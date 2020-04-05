@@ -1,0 +1,30 @@
+<aura:component >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="simpleRecord" type="Object" />
+    <aura:attribute name="recordstring" type="string"/>
+    <aura:attribute name="recordstring1" type="string"/>
+    <aura:attribute name="error" type="string"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <force:recordData aura:id="forceRecordCmp" 
+        recordId="{!v.recordId}"
+        mode="VIEW"
+        targetRecord="{!v.record}"
+        targetFields="{!v.simpleRecord}" 
+        layoutType="COMPACT" 
+        targetError="{!v.error}"
+                      
+    />
+    
+    <div class="recordName">
+     <p> {!v.simpleRecord.Name}</p>
+     <p> {!v.simpleRecord}</p>
+     <p> {!v.record}</p>
+     <p> {!v.recordstring}</p>
+     <p> {!v.recordstring1}</p>
+     <p> {!v.error}</p>
+    </div>
+    <lightning:button variant="brand" label="Submit" onclick="{! c.handleClick }" />
+    <lightning:button variant="brand" label="Toast" onclick="{! c.showToast }" />
+</aura:component>

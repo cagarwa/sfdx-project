@@ -1,0 +1,35 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" controller="CustomNoteUIController">
+    <aura:html tag="style">
+      .cuf-content {
+          padding:0 0rem !important;
+       }
+      .slds-p-around--medium{
+          padding:0rem !important;
+        }
+        .slds-modal__content{
+          height:unset !important;
+          max-height:unset !important;
+        }
+    </aura:html>
+    <div class="slds-modal__header">
+        <h2 class="slds-text-heading_medium">Add Notes</h2>
+    </div>
+    <lightning:inputRichText placeholder="Enter a note..."/>
+    
+    <div class="slds-modal__footer">
+       <div class="slds-grid slds-wrap">
+           <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_small" align="center">
+               <lightning:button class="cn-button-note" label="Save Draft" onclick="{!c.saveNote}" variant="brand"/>
+           </div>
+           <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_small" align="center">
+               <lightning:button class="cn-button-note" label="Complete" onclick="{!c.saveNote}" variant="brand"/>
+           </div>
+           <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_small" align="center">
+               <lightning:button class="cn-button-note" label="Delete Draft" onclick="{!c.saveNote}" variant="brand"/>
+           </div>
+           <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_small" align="center">
+               <lightning:button class="cn-button-note" label="Close" onclick="{!c.saveNote}" variant="brand"/>
+           </div>
+       </div>
+    </div>
+</aura:component>

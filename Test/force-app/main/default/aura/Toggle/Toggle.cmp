@@ -1,0 +1,8 @@
+<aura:component >
+	<lightning:input name="x"
+                 label="x"
+                 type="toggle"
+                 messageToggleActive="Done"
+                 messageToggleInactive="Not Done" 
+                     onchange="{Test}"/>
+</aura:component>

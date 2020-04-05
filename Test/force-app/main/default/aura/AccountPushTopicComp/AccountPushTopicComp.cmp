@@ -1,0 +1,30 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,flexipage:availableForRecordHome" access="global" >
+    <!-- EMP API component -->
+    <lightning:empApi aura:id="empApi" />
+
+    <!-- Calls the onInit controller function on component initalization -->
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:attribute name="accountRecord" type="Object"/>
+    <!-- Holds the streaming event subscription -->
+    <aura:attribute name="subscription" type="Map" />
+    <aura:attribute name="channel" type="String" default="/topic/AccountUpdates" />
+    <aura:attribute name="recordLoadError" type="String"/>
+    
+    <force:recordData aura:id="recordLoader"
+    recordId="{!v.recordId}"
+    fields="Name,Description,Phone,Industry"
+    targetFields="{!v.accountRecord}"
+    targetError="{!v.recordLoadError}"
+    />
+    
+    
+     <div> 
+        <lightning:card iconName="standard:account" title="{!v.accountRecord.Name}" >
+            <div class="slds-p-horizontal--small">
+                <p class="slds-text-heading--medium"><lightning:formattedPhone title="Phone" value="{!v.accountRecord.Phone}" /></p>
+                <p class="slds-truncate"><lightning:formattedText title="Description" value="{!v.accountRecord.Description}" /></p>
+                <p class="slds-truncate"> <lightning:formattedText title="Industry" value="{!v.accountRecord.Industry}" /></p>
+            </div>
+        </lightning:card>
+    </div> 
+</aura:component>

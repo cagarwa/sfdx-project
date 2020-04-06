@@ -39,9 +39,9 @@ node {
          stage('Deploy the code') {
 		
 			  
-            printf rmsg
+            printf "rmsg"
             println('Hello from a Job DSL script!')
-            println(rmsg)
+           
         }
 
        

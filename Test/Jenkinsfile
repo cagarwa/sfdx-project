@@ -1,6 +1,7 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
 node { 
+    def Test = env.PROCESSOR_REVISION
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
     def SFDC_USERNAME
@@ -11,6 +12,7 @@ node {
     def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
 
     println 'KEY IS' 
+    println Test
     println JWT_KEY_CRED_ID
     println HUB_ORG
     println SFDC_HOST

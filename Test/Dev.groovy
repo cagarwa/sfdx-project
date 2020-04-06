@@ -1,6 +1,6 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
-node {
+node('test-node') {
 
     
             println('Hello from a Job DSL script!')

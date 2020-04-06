@@ -39,7 +39,7 @@ node {
          stage('Deploy the code') {
 			// need to pull out assigned username
 			
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest -u ${HUB_ORG}"
+			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:org:list"
 			
 			  
             printf rmsg

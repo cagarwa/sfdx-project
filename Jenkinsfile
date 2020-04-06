@@ -37,11 +37,14 @@ node {
         }
 
          stage('Deploy the code') {
-		
+			// need to pull out assigned username
+			
+			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest -u ${HUB_ORG}"
+			
 			  
-            printf "rmsg"
+            printf rmsg
             println('Hello from a Job DSL script!')
-           
+            println(rmsg)
         }
 
        

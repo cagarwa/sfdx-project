@@ -35,8 +35,8 @@ node {
             if (rc != 0) { error 'hub org authorization failed' }
 
 			println rc
+          }
         }
-
          stage('Deploy the code') {
 			// need to pull out assigned username
 			
@@ -50,5 +50,5 @@ node {
 
        
 
-    }
+    
 }

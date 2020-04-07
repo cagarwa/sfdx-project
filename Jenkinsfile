@@ -9,7 +9,8 @@ node {
     def HUB_ORG=env.HUB_ORG_DH
     def SFDC_HOST = env.SFDC_HOST_DH
     def JWT_KEY_CRED_ID = env.JWT_CRED_ID_DH
-    def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+    def CONNECTED_APP_CONSUMER_KEY= env.CONNECTED_APP_CONSUMER_KEY_DH
+
 
     println 'KEY IS' 
     println JWT_KEY_CRED_ID
@@ -39,7 +40,7 @@ node {
          stage('Deploy the code') {
 			// need to pull out assigned username
 			
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:org:list"
+			  rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			
 			  
             printf rmsg

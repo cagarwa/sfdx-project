@@ -39,7 +39,7 @@ node {
             
           }
           stage('Convert to Metatdata') {
-             rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:convert -r force-app -d mdapioutput -w 100"
+             rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:convert -r force-app -d mdapioutput"
              println(rmsg)
           }
           stage('Deploy to Sandbox') {

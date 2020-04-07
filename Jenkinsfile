@@ -38,14 +38,14 @@ node {
 
             
           }
-        
-        stage('Deploy to Sandbox') {
-            rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG} -w 100"
-            printf rmsg
-            
+          stage('Convert to Metatdata') {
+             rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:convert -r force-app -d mdapioutput -w 100"
+             println(rmsg)
+          }
+          stage('Deploy to Sandbox') {
+            rmsg = bat returnStdout: true, script: "\"${toolbelt}\" sfdx force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -w 100"
             println(rmsg)
-
-        }
+          }
       
     }
        

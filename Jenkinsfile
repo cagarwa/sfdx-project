@@ -35,15 +35,17 @@ node {
             if (rc != 0) { error 'hub org authorization failed' }
 
 			println rc
+
             
-            rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-			
-			  
-            printf rmsg
-            println('Hello from a Job DSL script!')
-            println(rmsg)
           }
         
+        stage('Deploy to Sandbox') {
+            rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG} -w 100"
+            printf rmsg
+            
+            println(rmsg)
+
+        }
       
     }
        

@@ -1,6 +1,11 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
 node {
+    def props = readProperties  file: 'test.properties'
+    def Var1= props['Monday']
+    def Var2= props['Tuesday']
+    echo "Var1=${Var1}"
+    echo "Var2=${Var2}"
     def BRANCH_NAME = env.BRANCH_NAME
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"

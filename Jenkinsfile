@@ -25,6 +25,7 @@ node {
     
     println 'KEY IS' 
     println BRANCH_NAME
+    println RUN_ARTIFACT_DIR
     println JWT_KEY_CRED_ID
     println HUB_ORG
     println SFDC_HOST

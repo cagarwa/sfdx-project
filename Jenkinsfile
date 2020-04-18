@@ -56,12 +56,12 @@ node {
              println(rmsg)
           }
           stage('Deploy to Sandbox') {
-            rmsg = bat returnStdout: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -l RunLocalTests -c -w 100"
+            rmsg = bat returnStdout: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG}  -c -w 100"  //-l RunLocalTests
             println(rmsg)
           }     
              
     } 
            
-  
+   
       
 }

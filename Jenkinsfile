@@ -1,29 +1,45 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
 node {
+    def props = readProperties  file: 'pipeline.properties'
+    def HUB_ORG= props['HUB_ORG_DH']
+    def SFDC_HOST= props['SFDC_HOST_DH']
+    def JWT_KEY_CRED_ID = props['JWT_CRED_ID_DH']
+    def CONNECTED_APP_CONSUMER_KEY= props['CONNECTED_APP_CONSUMER_KEY_DH']
+
+    echo "HUB_ORG=${HUB_ORG_DH}"
+    echo "SFDC_HOST=${SFDC_HOST_DH}"
+    echo "JWT_KEY_CRED_ID=${JWT_CRED_ID_DH}"
+    echo "CONNECTED_APP_CONSUMER_KEY=${CONNECTED_APP_CONSUMER_KEY_DH}"
+
+    def BRANCH_NAME = env.BRANCH_NAME
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
     def SFDC_USERNAME
 
-    def HUB_ORG=env.HUB_ORG_DH
+    /*def HUB_ORG=env.HUB_ORG_DH
     def SFDC_HOST = env.SFDC_HOST_DH
     def JWT_KEY_CRED_ID = env.JWT_CRED_ID_DH
-    def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+    def CONNECTED_APP_CONSUMER_KEY= env.CONNECTED_APP_CONSUMER_KEY_DH*/
 
+    
     println 'KEY IS' 
+    println BRANCH_NAME
+    println RUN_ARTIFACT_DIR
     println JWT_KEY_CRED_ID
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = tool 'toolbelt'
 
+    toolbelt = toolbelt+'\\SFDX'
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
         checkout scm
     }
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
-        stage('Deploye Code') {
+        stage('Connect to Sandbox') {
             if (isUnix()) {
                 rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
@@ -32,17 +48,20 @@ node {
             if (rc != 0) { error 'hub org authorization failed' }
 
 			println rc
-			
-			// need to pull out assigned username
-			if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-			}
-			  
-            printf rmsg
-            println('Hello from a Job DSL script!')
+
+            
+          }
+          stage('Convert to Metatdata') {
+             rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:convert -r force-app -d mdapioutput"
+             println(rmsg)
+          }
+          stage('Deploy to Sandbox') {
+            rmsg = bat returnStdout: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -l RunLocalTests -c -w 100"
             println(rmsg)
-        }
-    }
+          }     
+             
+    } 
+           
+  
+      
 }

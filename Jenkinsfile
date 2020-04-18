@@ -60,7 +60,7 @@ node {
             rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG}  -l RunLocalTests -c -w 100" 
             println(rc)
             cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
-            if (rc != 0) { error 'Deployment failed' })
+            if (rc != 0) { error 'Deployment failed' }
           }     
 
           

@@ -54,6 +54,11 @@ node {
              println(rmsg)
           }
 
+         stage('Destructive Changes'){
+            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d destructiveChanges -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
+            println(rc)
+          }
+
           def rc
 
           stage('Deploy to Sandbox') {
@@ -67,10 +72,7 @@ node {
             println(rc1)
           }
 
-         stage('Destructive Changes'){
-            rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d destructiveChanges -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
-            println(rc1)
-          }
+         
           
 
           stage('Clean up work space'){

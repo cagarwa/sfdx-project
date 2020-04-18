@@ -1,16 +1,7 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
 node {
-    def props = readProperties  file: 'pipeline.properties'
-    def HUB_ORG= props['HUB_ORG_DH']
-    def SFDC_HOST= props['SFDC_HOST_DH']
-    def JWT_KEY_CRED_ID = props['JWT_CRED_ID_DH']
-    def CONNECTED_APP_CONSUMER_KEY= props['CONNECTED_APP_CONSUMER_KEY_DH']
-
-    echo "HUB_ORG=${HUB_ORG_DH}"
-    echo "SFDC_HOST=${SFDC_HOST_DH}"
-    echo "JWT_KEY_CRED_ID=${JWT_CRED_ID_DH}"
-    echo "CONNECTED_APP_CONSUMER_KEY=${CONNECTED_APP_CONSUMER_KEY_DH}"
+   
 
     def BRANCH_NAME = env.BRANCH_NAME
     def BUILD_NUMBER=env.BUILD_NUMBER
@@ -38,6 +29,16 @@ node {
         // when running in multi-branch job, one must issue this command
         checkout scm
     }
+    def props = readProperties  file: 'pipeline.properties'
+    def HUB_ORG= props['HUB_ORG_DH']
+    def SFDC_HOST= props['SFDC_HOST_DH']
+    def JWT_KEY_CRED_ID = props['JWT_CRED_ID_DH']
+    def CONNECTED_APP_CONSUMER_KEY= props['CONNECTED_APP_CONSUMER_KEY_DH']
+
+    echo "HUB_ORG=${HUB_ORG_DH}"
+    echo "SFDC_HOST=${SFDC_HOST_DH}"
+    echo "JWT_KEY_CRED_ID=${JWT_CRED_ID_DH}"
+    echo "CONNECTED_APP_CONSUMER_KEY=${CONNECTED_APP_CONSUMER_KEY_DH}"
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Connect to Sandbox') {

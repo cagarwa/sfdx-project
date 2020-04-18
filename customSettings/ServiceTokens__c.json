@@ -1,0 +1,12 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "ServiceTokens__c",
+                "referenceId": "ServiceTokens__cRef1"
+            },
+            "Name": "ProjectServiceToken",
+            "Token__c": "7a07d319-2c61-48e7-b2c6-2180c11a2459"
+        }
+    ]
+}

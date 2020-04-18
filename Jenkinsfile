@@ -68,7 +68,7 @@ node {
           } 
           
           stage('Deploy Custom Settings'){
-            rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:data:tree:import -f customSettings/ServiceCredentials__c.json, customSettings/ServiceTokens__c.json -u ${HUB_ORG}"
+            rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:data:tree:import -f customSettings/ServiceCredentials__c.json,customSettings/ServiceTokens__c.json -u ${HUB_ORG}"
             println(rc1)
           }
 

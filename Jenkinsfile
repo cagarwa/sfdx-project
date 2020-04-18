@@ -53,20 +53,33 @@ node {
              rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:convert -r force-app -d mdapioutput"
              println(rmsg)
           }
+
+          def rc
+
           stage('Deploy to Sandbox') {
             rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
             println(rc)
+            
+          } 
+          
+          stage('Deploy Custom Settings'){
             rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:data:tree:import -f ServiceCredentials__c.json -u ${HUB_ORG}"
             println(rc1)
-            cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
-            if (rc != 0) { error 'Deployment failed' }
-          }  
-             
-          stage('Destructive Changes'){
-            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d destructiveChanges -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
-            println(rc)
+          }
+
+         stage('Destructive Changes'){
+            rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d destructiveChanges -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
+            println(rc1)
           }
           
+
+          stage('Clean up work space'){
+            cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
+            if (rc != 0) { error 'Error in stage Deploy to Sandbox' }
+          }
+
+             
+        
              
     } 
            

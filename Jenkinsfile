@@ -56,7 +56,7 @@ node {
           stage('Deploy to Sandbox') {
             rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
             println(rc)
-            rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:data:tree:import -f ServiceCredentials__c.json -u ${HUB_ORG} -w 100"
+            rc1 = bat returnStatus: true, script: "\"${toolbelt}\"  force:data:tree:import -f ServiceCredentials__c.json -u ${HUB_ORG}"
             println(rc1)
             cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
             if (rc != 0) { error 'Deployment failed' }

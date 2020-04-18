@@ -54,7 +54,7 @@ node {
              println(rmsg)
           }
           stage('Deploy to Sandbox') {
-            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG}  -l RunLocalTests -c --verbose -w 100" 
+            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG}  -l RunLocalTests -c --loglevel fatal -w 100" 
             println(rc)
             cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
             if (rc != 0) { error 'Deployment failed' }

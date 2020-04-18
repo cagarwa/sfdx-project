@@ -33,6 +33,7 @@ node {
     def toolbelt = tool 'toolbelt'
 
     toolbelt = toolbelt+'\\SFDX'
+    
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
         checkout scm
@@ -58,7 +59,10 @@ node {
           stage('Deploy to Sandbox') {
             rmsg = bat returnStdout: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG}  -l RunLocalTests -c -w 100" 
             println(rmsg)
+            cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
           }     
+
+          
              
     } 
            

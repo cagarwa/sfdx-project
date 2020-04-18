@@ -63,7 +63,7 @@ node {
           }  
              
           stage('Destructive Changes'){
-            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d destructiveChanges\destructiveChanges -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
+            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d destructiveChanges -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
             println(rc)
           }
           

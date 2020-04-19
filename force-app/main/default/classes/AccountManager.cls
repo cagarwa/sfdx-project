@@ -9,7 +9,7 @@ global with sharing class AccountManager {
         
         Account result =  [SELECT Id,Name,(select Id,Name from Contacts)
                            FROM Account
-                           WHERE Id = :vAccountId];
+                           WHERE Id = :vAccountId Limit 1];
         return result;
     }
 

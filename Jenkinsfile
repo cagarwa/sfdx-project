@@ -80,6 +80,19 @@ node {
             if (rc != 0) { error 'Error in stage Deploy to Sandbox' }
           }
 
+          stage('Send email notification'){
+            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+            def summary = "${subject} (${env.BUILD_URL})"
+            def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
+             emailext (
+                to: 'chandan.kiet@gmail.com',
+                subject: subject,
+                body: details,
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+            )
+          }
+
              
         
              

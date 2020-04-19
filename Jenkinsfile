@@ -74,13 +74,21 @@ node {
 
          
           
-
+          
           stage('Clean up work space'){
             cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
-            if (rc != 0) { error 'Error in stage Deploy to Sandbox' }
+            
           }
 
           stage('Send email notification'){
+            def buildStatus
+            if (rc != 0) { 
+                 buildStatus = 'Failed'
+                 error 'Error in stage Deploy to Sandbox'
+             }
+            else{
+                buildStatus = 'Success' 
+            }
             def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
             def summary = "${subject} (${env.BUILD_URL})"
             def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>

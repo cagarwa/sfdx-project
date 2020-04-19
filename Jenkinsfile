@@ -95,7 +95,7 @@ node {
             }catch(Exception err){
 
             }
-            finally(){
+            finally{
                 def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
                 def summary = "${subject} (${env.BUILD_URL})"
                 def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>

@@ -62,7 +62,7 @@ node {
           def rc
 
           stage('Deploy to Sandbox') {
-            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -w 100" //-l RunLocalTests -c  -w 100" 
+            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -l RunLocalTests -c  -w 100" 
             println(rc)
             
           } 
@@ -82,7 +82,7 @@ node {
 
           stage('Send email notification'){
             def buildStatus
-            if (rc != 0) { 
+             if (rc != 0) { 
                  buildStatus = 'Failed'
                  error 'Error in stage Deploy to Sandbox'
              }

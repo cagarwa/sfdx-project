@@ -90,6 +90,7 @@ node {
                     error 'Error in stage Deploy to Sandbox'
                 }
                 else{
+                    currentBuild.result = 'Success'
                     buildStatus = 'Success' 
                 }
             }catch(Exception err){

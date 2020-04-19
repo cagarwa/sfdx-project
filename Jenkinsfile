@@ -62,7 +62,7 @@ node {
           def rc
 
           stage('Deploy to Sandbox') {
-            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG} -l RunLocalTests -c  -w 100" 
+            rc = bat returnStatus: true, script: "\"${toolbelt}\"  force:mdapi:deploy -d mdapioutput -u ${HUB_ORG}  -c  -w 100" //-l RunLocalTests 
             println(rc)
             
           } 
@@ -100,8 +100,8 @@ node {
                 def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
                 def summary = "${subject} (${env.BUILD_URL})"
                 def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-                <p>Check console output at ----<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>----</p> 
-                <p>Current Build Result [${currentBuild.result}]</p>"""
+                <p>Check console output at : <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p> 
+                <p>Current Build Result : ${currentBuild.result}</p>"""
                 emailext (
                     to: 'chandan.kiet@gmail.com',
                     subject: subject,

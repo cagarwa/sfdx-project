@@ -83,14 +83,19 @@ node {
           stage('Send email notification'){
             
              def buildStatus
-             if (rc != 0) { 
-                 buildStatus = 'Failed'
-                 error 'Error in stage Deploy to Sandbox'
-             }
-            else{
-                buildStatus = 'Success' 
+            try{
+                if (rc != 0) { 
+                    buildStatus = 'Failed'
+                    currentBuild.result = 'Error in stage Deploy to Sandbox'
+                    error 'Error in stage Deploy to Sandbox'
+                }
+                else{
+                    buildStatus = 'Success' 
+                }
+            }catch(Exception err){
+
             }
-            post{
+            finally(){
                 def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
                 def summary = "${subject} (${env.BUILD_URL})"
                 def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
@@ -101,7 +106,8 @@ node {
                     body: details,
                     recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                 )
-            }
+            
+           }
           }
 
              

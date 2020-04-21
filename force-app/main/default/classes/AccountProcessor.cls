@@ -5,7 +5,7 @@ public class AccountProcessor {
         
         for(Account vAccount : vAccountList) {
             vAccount.Number_of_Contacts__c = vAccount.Contacts.Size(); 
-        }
+        } 
         
         update vAccountList;
     }

@@ -1,0 +1,52 @@
+Label,DeveloperName,Questionnaire__c,Sequence__c,Type__c
+abc1,abc1,"Required Infrastructure is setup, configured, tested and documented (for projects, large features, and where applicable) / trust approval is in place if needed (Owner : Dev Manager)",1,DoR Dev
+abc2,abc2,Story/Bug is defined and written from a user perspective.(Owner : PO/BSA),2,DoR Dev
+abc3,abc3,"Bug is fully enriched. Example : Logs, steps to reproduce, Impact, frequency of occurrences, Performance, Accessibility, UI load times, SOQL run times, etc. (Owner : PO/BSA)",3,DoR Dev
+abc4,abc4,Story/Bug is associated with any parent or child bugs and logged team dependencies.(Owner : PO/SM),4,DoR Dev
+abc5,abc5,Story has been discussed to ensure common understanding(Story Telling) and estimate story size by delivery team. (Owner : PO/BSA),5,DoR Dev
+abc6,abc6,Acceptance criteria is well defined. All use cases need to be documented in ACs(if Applicable) and story is small enough to fit into a sprint. (Owner : PO/BSA),6,DoR Dev
+abc7,abc7,"Access criteria has been identified. (Owner : PO/BSA) ((Users, profiles, field level and object level access needed, page layouts, record types for the functionality.)",7,DoR Dev
+abc8,abc8,"Requirement doc / CR links, Design Doc, Arch. document or other reference documents to be available on story. (Owner : PO/BSA)",8,DoR Dev
+abc9,abc9,Theme(s)/Epics of the story is added. (Owner : PO/BSA),9,DoR Dev
+abc10,abc10,Performance criteria has been identified. Check if we need to involve the performance team for testing. (Owner : PO/BSA/DM),10,DoR Dev
+abc11,abc11,"Environment for dev, QE and UAT has been identified and necessary access have been granted.",11,DoR Dev
+abc12,abc12,Identify the need for object/ custom setting and reach out to the team for approval.,12,DoR Dev
+abc13,abc13,The code repo location is known and process to create branch is understood by team. (Owner : DM),13,DoR Dev
+abc14,abc14,Deployment schedule of the Bug/Story (Owner : PO/DM),14,DoR Dev
+abc15,abc15,"User Experience consulted to identify any research, prototype, or component requirements, Localization, Multi currencies. Sketches have been provided as appropriate. (Owner : PO/BSA)",15,DoR Dev
+abc16,abc16,Frequency has been defined in case of batch job.,16,DoR Dev
+abc17,abc17,All acceptance criteria have been satisfied.,1,DoD Dev
+abc18,abc18,"All documentation(Update to TDD, Use/Test cases/Test Plans) is complete and has been reviewed and updated and approved.",2,DoD Dev
+abc19,abc19,UX pages has been implemented as per design. (if any).,3,DoD Dev
+abc20,abc20,Runlist is created and attached to the story.,4,DoD Dev
+abc21,abc21,Release/Build dates have been identified for the completed stories.,5,DoD Dev
+abc22,abc22,"Story has been updated with findings (Resolutions(s), Major Changes, etc...)",6,DoD Dev
+abc23,abc23,PO/BSA has accepted the story as complete.,7,DoD Dev
+abc24,abc24,"Security scanning (checkmarx) and reviews are complete, and features adhere to security standards (should be completed at a Feature Level)",8,DoD Dev
+abc25,abc25,"Code and Unit Tests checked-in and builds successfully. 85-90% code coverage achieved (for net new code) and 75% for legacy code, including vendor managed packages(if applicable).",9,DoD Dev
+abc26,abc26,Paste the GIT Link.,10,DoD Dev
+abc27,abc27,100% of your code must have undergone a peer review.,11,DoD Dev
+abc28,abc28,"Localization and Multi Currency changes must be completed, if Applicable",12,DoD Dev
+abc29,abc29,Performance/scalability/reliability/regression tests are complete and passed.,1,DoD QE
+abc30,abc30,"QE sign off with,(test should pass 100%) No P0's, P1's and P2's. It includes the manual testing, regression testing, E2E testing where applicable.",2,DoD QE
+abc31,abc31,100% of must have undergone a peer review.,3,DoD QE
+abc32,abc32,Automation must be completed.,4,DoD QE
+abc33,abc33,Paste the GIT Link.,5,DoD QE
+abc34,abc34,Document the test cases and test plans in QAforce/gdoc/Quip and add the link,6,DoD QE
+abc35,abc35,Cross-team integration is completed and tested.,7,DoD QE
+abc36,abc36,Update SEEP and SEED flow if applicable.,8,DoD QE
+abc37,abc37,Update Regression suits if applicable,9,DoD QE
+abc38,abc38,All regression tests must pass for the build,10,DoD QE
+abc39,abc39,A team member states no additional work is required,1,DoD Bug
+abc40,abc40,Bug has been updated with finding (Root Cause(s) and Resolutions(s)),2,DoD Bug
+abc41,abc41,Long Term Resolution(if any) work record link needs to be attached(if any).,3,DoD Bug
+abc42,abc42,All Acceptance Criteria have been met,4,DoD Bug
+abc43,abc43,PO has accepted the bug as complete.,5,DoD Bug
+abc44,abc44,"All documentation(Update to TDD, Use/Test cases/test Plans) is complete and has been reviewed and approved.",6,DoD Bug
+abc45,abc45,Runlist is created and attached to the bug.,7,DoD Bug
+abc46,abc46,Release/Build dates have been identified for the completed stories.,8,DoD Bug
+abc47,abc47,"Security scanning (checkmarx) and reviews are complete, and features adhere to security standards (should be completed at a Feature Level)",9,DoD Bug
+abc48,abc48,"Code and Unit Tests checked-in and builds successfully. 85-90% code coverage achieved (for net new code) and 75% for legacy code, including vendor managed packages(if applicable",10,DoD Bug
+abc49,abc49,Paste the GIT Link.,11,DoD Bug
+abc50,abc50,100% of your code must have undergone a peer review.,12,DoD Bug
+abc51,abc51,"Localization and Multi Currency changes must be completed, if Applicable",13,DoD Bug
